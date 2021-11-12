@@ -27,6 +27,23 @@
 }
 
 .super-div {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.track {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.track div {
+  margin: 15px;
+  text-align: center;
 }
