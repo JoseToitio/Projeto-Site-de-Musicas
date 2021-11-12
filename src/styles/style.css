@@ -2,3 +2,31 @@
   display: flex;
   justify-content: space-around;
 }
+
+.div-albums {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  height: 350px;
+  justify-content: center;
+  margin: 20px;
+  width: 350px;
+}
+
+.div-items img {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.div-items {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.super-div {
+  display: flex;
+  flex-wrap: wrap;
+}

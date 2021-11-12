@@ -59,22 +59,28 @@ class Search extends React.Component {
             Pesquisar
           </button>
         </form>
-        {render && <Loading /> }
-        {albums.length > 0
-          ? <p>{`Resultado de álbuns de: ${saveNameArtist}`}</p>
-          : <p>Nenhum álbum foi encontrado</p>}
-        {!render && albums.map((album, index) => (
-          <div key={ index }>
-            <Link
-              to={ `/album/${album.collectionId}` }
-              data-testid={ `link-to-album-${album.collectionId}` }
-            >
-              <p>{album.artistName}</p>
-            </Link>
-            <p>{album.collectionName}</p>
-            <img src={ album.artworkUrl100 } alt={ album.artistName } />
-          </div>
-        ))}
+        <div>
+          {render && <Loading /> }
+          {albums.length > 0
+            ? <p>{`Resultado de álbuns de: ${saveNameArtist}`}</p>
+            : <p>Nenhum álbum foi encontrado</p>}
+        </div>
+        <div className="super-div">
+          {!render && albums.map((album, index) => (
+            <div key={ index } className="div-albums">
+              <div className="div-items">
+                <Link
+                  to={ `/album/${album.collectionId}` }
+                  data-testid={ `link-to-album-${album.collectionId}` }
+                >
+                  <p>{album.artistName}</p>
+                </Link>
+                <p>{album.collectionName}</p>
+                <img src={ album.artworkUrl100 } alt={ album.artistName } />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
