@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -19,11 +19,13 @@ class Album extends React.Component {
     this.getMusicsAlbum = this.getMusicsAlbum.bind(this);
     this.saveFavorite = this.saveFavorite.bind(this);
     this.loadingPage = this.loadingPage.bind(this);
+    this.getFavoriteSongs = this.getFavoriteSongs.bind(this);
   }
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     this.getMusicsAlbum(id);
+    this.getFavoriteSongs();
   }
 
   async getMusicsAlbum(id) {
@@ -37,13 +39,21 @@ class Album extends React.Component {
     });
   }
 
+  async getFavoriteSongs() {
+    await getFavoriteSongs()
+      .then((response) => this.setState(({ songsLike }) => ({
+        songsLike: [...songsLike, ...response],
+      })));
+  }
+
   saveFavorite({ target }) {
     const { allAlbums } = this.state;
     this.loadingPage();
+    const filterAlbum = allAlbums.find((album) => album.trackId === Number(target.id));
     addSong(allAlbums)
       .then(() => {
         this.setState(({ songsLike }) => ({ loading: false,
-          songsLike: [...songsLike, Number(target.id)],
+          songsLike: [...songsLike, filterAlbum],
         }));
       });
   }
@@ -76,7 +86,7 @@ class Album extends React.Component {
                   name={ album.trackName }
                   trackId={ album.trackId }
                   saveFavorite={ this.saveFavorite }
-                  favorites={ songsLike.some((music) => music === album.trackId) }
+                  favorites={ songsLike.some((music) => music.trackId === album.trackId) }
                 />
               ))}
           </div>
