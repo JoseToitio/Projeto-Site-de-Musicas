@@ -20,14 +20,6 @@ class Album extends React.Component {
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     this.getMusicsAlbum(id);
-    // getMusics(id).then((response) => (
-    //   this.setState({
-    //     albumMusics: response[0].collectionName,
-    //     artistName: response[0].artistName,
-    //     allAlbums: [...response],
-    //     loading: false,
-    //   })
-    // ));
   }
 
   async getMusicsAlbum(id) {
