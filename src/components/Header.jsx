@@ -42,10 +42,10 @@ class Header extends React.Component {
     return (
       <header data-testid="header-component" className="header">
         {render ? <Loading /> : this.loadUser()}
-        <Link to="/search">Search</Link>
+        <Link to="/search" data-testid="link-to-search">Search</Link>
         <Link to="/album/:id">Album id</Link>
-        <Link to="/favorites">Favoritos</Link>
-        <Link to="/profile">Profile</Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
         <Link to="/profile/edit">Profile Edit</Link>
       </header>
     );
