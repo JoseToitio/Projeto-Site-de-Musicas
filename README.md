@@ -32,4 +32,3 @@ Um aplicação capaz de reproduzir músicas das mais variadas bandas e artistas,
   - Ver a lista de músicas favoritas;
   - Ver o perfil da pessoa logada;
   - Editar o perfil da pessoa logada;
-
